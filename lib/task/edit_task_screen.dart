@@ -46,27 +46,27 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 TaskInputField(
                   title: 'Title',
                   hint: 'Enter title here',
-                  controller: taskController.newTitle,
+                  controller: taskController.newTitle, validator: null,
                 ),
                 TaskInputField(
                   title: 'My Task',
                   hint: 'Enter note here',
-                  controller: taskController.newTask,
+                  controller: taskController.newTask, validator: null,
                 ),
                 TaskInputField(
                   title: 'Date',
                   hint: DateFormat.yMEd().format(DateTime.now()),
-                  controller: taskController.newDate,
+                  controller: taskController.newDate, validator: null,
                 ),
                 TaskInputField(
                   title: 'Time',
                   hint: '00:00',
-                  controller: taskController.newTime,
+                  controller: taskController.newTime, validator: null,
                 ),
                 TaskInputField(
                   title: 'Repeat',
                   hint: 'None',
-                  controller: taskController.newRepeat,
+                  controller: taskController.newRepeat, validator: null,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,

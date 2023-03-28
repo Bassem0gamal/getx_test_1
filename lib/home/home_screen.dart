@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:getx_test_1/data_source/add_task_starter.dart';
 import 'package:getx_test_1/home/home_controller.dart';
 import 'package:getx_test_1/home/widgets/home_calendar_widget.dart';
 import 'package:getx_test_1/home/widgets/home_tasks_widget.dart';
-import 'package:getx_test_1/task/add_task_screen.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
@@ -22,6 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     homeController.loadTasks();
     super.initState();
+  }
+
+  Future<void> openAddTask() async {
+    final  result =  await Get.toNamed(AddTaskStarter.id);
+    if (result == true) {
+      homeController.loadTasks();
+    }
   }
 
   @override
@@ -56,76 +63,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () => Get.toNamed(AddTaskScreen.id),
+                    onPressed: () => openAddTask(),
                     child: const Text('+ New Task'),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              const SizedBox(
-                child: HomeCalendarWidget(),
-              ),
+              const HomeCalendarWidget(),
               const SizedBox(height: 16.0),
-              SizedBox(
-                child: noTask == 2
-                    ? const NoTask()
-                    : SizedBox(
-                        height: 500,
-                        child: Obx(
-                          () => ListView.builder(
+              Expanded(
+                child: Obx(
+                  () {
+                    return homeController.tasks.isEmpty
+                        ? const NoTask()
+                        : ListView.builder(
                             itemCount: homeController.tasks.length,
                             itemBuilder: (context, int i) {
-                              return Column(
-                                children: [
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.blue,
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              homeController.tasks[i].title,
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20),
-                                            ),
-                                            const SizedBox(height: 5),
-                                            Text(
-                                              homeController.tasks[i].note,
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 14),
-                                            ),
-                                            const SizedBox(height: 5),
-                                            Align(
-                                              alignment: Alignment.bottomLeft,
-                                              child: Text(
-                                                homeController.tasks[i].time
-                                                    .toString(),
-                                                style: TextStyle(
-                                                    color: Colors.grey[350],
-                                                    fontSize: 10),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                ],
-                              );
+                              return TaskItem(taskModel: homeController.tasks[i]);
                             },
-                          ),
-                        ),
-                      ),
+                          );
+                  },
+                ),
               ),
             ],
           ),

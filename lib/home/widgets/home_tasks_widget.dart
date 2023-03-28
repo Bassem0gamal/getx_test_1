@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:getx_test_1/home/home_controller.dart';
+import 'package:getx_test_1/task/models/task_model.dart';
 
 class NoTask extends StatelessWidget {
   const NoTask({Key? key}) : super(key: key);
@@ -21,60 +22,53 @@ class NoTask extends StatelessWidget {
   }
 }
 
-class HomeTask extends StatelessWidget {
-  const HomeTask(
-      {super.key,
-      required this.title,
-      required this.task,
-      required this.date,
-      this.color,
-      this.time,
-      this.repeat});
+class TaskItem extends StatelessWidget {
+  const TaskItem({super.key, required this.taskModel});
 
-  final String title;
-  final String task;
-  final String date;
-  final String? time;
-  final String? repeat;
-  final Color? color;
+  final TaskModel taskModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24.0),
-        color: color,
-      ),
-      height: 120,
-      width: MediaQuery.of(context).size.width,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 18,
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(10.0)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      taskModel.title,
+                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      taskModel.note,
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                    const SizedBox(height: 5),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                       taskModel.time,
+                        style: TextStyle(color: Colors.grey[350], fontSize: 10),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              task,
-              style: const TextStyle(color: Colors.white),
-            ),
-            Align(
-              alignment: FractionalOffset.bottomLeft,
-              child: Text(
-                date,
-                style: TextStyle(color: Colors.grey.shade300),
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+        const SizedBox(height: 4),
+      ],
     );
   }
 }

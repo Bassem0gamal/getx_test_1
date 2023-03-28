@@ -3,10 +3,48 @@ import 'package:getx_test_1/task/models/task_model.dart';
 import 'package:intl/intl.dart';
 
 class InMemoryTaskDataSource implements TaskDataSource {
-  final Map<int, TaskModel> _map = {
-    1: TaskModel(id: 1, title: 'Title', note: 'Note 1', time: DateFormat.yMMMMd().format(DateTime.now())),
-    2: TaskModel(id: 2, title: 'Title', note: 'Note 2', time: DateFormat.yMMMMd().format(DateTime.now()))
+  static final InMemoryTaskDataSource instance =
+      InMemoryTaskDataSource._private();
 
+
+  InMemoryTaskDataSource._private();
+
+  final Map<int, TaskModel> _map = {
+    1: TaskModel(
+        id: 1,
+        title: 'Title',
+        note: 'Note 1',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
+    2: TaskModel(
+        id: 2,
+        title: 'Title',
+        note: 'Note 2',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
+    3: TaskModel(
+        id: 3,
+        title: 'Title',
+        note: 'Note 3',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
+    4: TaskModel(
+        id: 4,
+        title: 'Title',
+        note: 'Note 4',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
+    5: TaskModel(
+        id: 5,
+        title: 'Title',
+        note: 'Note 5',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
+    6: TaskModel(
+        id: 6,
+        title: 'Title',
+        note: 'Note 6',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
+    7: TaskModel(
+        id: 7,
+        title: 'Title',
+        note: 'Note 7',
+        time: DateFormat.yMMMMd().format(DateTime.now())),
   };
 
   @override

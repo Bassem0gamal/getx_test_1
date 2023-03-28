@@ -28,6 +28,8 @@ class TaskController extends GetxController {
     return pickerDate;
   }
 
+
+
   Future<void> addTask(
       {required String? title,
       required String? task,
