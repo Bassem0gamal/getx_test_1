@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_test_1/data_source/add_task_starter.dart';
-import 'package:getx_test_1/task/add_task_screen.dart';
-import 'package:getx_test_1/task/edit_task_screen.dart';
+import 'package:getx_test_1/task/add_task_starter.dart';
+import 'package:getx_test_1/task/stoped_for_now/edit_task_screen.dart';
 
 import 'home/home_screen.dart';
 

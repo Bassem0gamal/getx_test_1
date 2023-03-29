@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/models/task_input_field_model.dart';
-import 'package:getx_test_1/task/task_controller.dart';
+import 'package:getx_test_1/task/stoped_for_now/task_controller.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 

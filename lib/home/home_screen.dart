@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:getx_test_1/data_source/add_task_starter.dart';
 import 'package:getx_test_1/home/home_controller.dart';
 import 'package:getx_test_1/home/widgets/home_calendar_widget.dart';
 import 'package:getx_test_1/home/widgets/home_tasks_widget.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
+
+import '../task/add_task_starter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

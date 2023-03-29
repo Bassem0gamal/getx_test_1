@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_test_1/data_source/add_task_controller.dart';
+import 'package:getx_test_1/task/add_task_controller.dart';
 import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
@@ -7,9 +7,9 @@ import 'package:intl/intl.dart';
 
 class AddTaskStarter extends StatefulWidget {
   const AddTaskStarter({Key? key}) : super(key: key);
+
   static String id = '/add_task_starter';
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
 
   @override
   State<AddTaskStarter> createState() => _AddTaskStarterState();
@@ -17,6 +17,19 @@ class AddTaskStarter extends StatefulWidget {
 
 class _AddTaskStarterState extends State<AddTaskStarter> {
   AddTaskController addTaskController = AddTaskController();
+
+  @override
+  void dispose() {
+    addTaskController.newNote;
+    addTaskController.newNote;
+    addTaskController.newDate;
+
+    super.dispose();
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
