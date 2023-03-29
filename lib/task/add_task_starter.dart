@@ -19,19 +19,6 @@ class _AddTaskStarterState extends State<AddTaskStarter> {
   AddTaskController addTaskController = AddTaskController();
 
   @override
-  void dispose() {
-    addTaskController.newNote;
-    addTaskController.newNote;
-    addTaskController.newDate;
-
-    super.dispose();
-  }
-
-
-
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
