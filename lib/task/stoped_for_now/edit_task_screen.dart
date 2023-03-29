@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/models/task_input_field_model.dart';
-import 'package:getx_test_1/task/task_controller.dart';
+import 'package:getx_test_1/task/stoped_for_now/task_controller.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
-  static String id = '/add_task_screen';
+class EditTaskScreen extends StatefulWidget {
+  const EditTaskScreen({Key? key}) : super(key: key);
+  static String id = '/edit_task_screen';
 
   @override
-  State<AddTaskScreen> createState() => _AddTaskScreenState();
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
+class _EditTaskScreenState extends State<EditTaskScreen> {
   TaskController taskController = TaskController();
+
+  @override
+  void initState() {
+    taskController.newTitle.text = taskController.title.text;
+    taskController.newTask.text = taskController.task.text;
+    taskController.newDate.text = taskController.date.text;
+    taskController.newTime.text = taskController.time.text;
+    taskController.newRepeat.text = taskController.repeat.text;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Task'),
+        title: const Text('Edit Your Task'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -36,17 +46,27 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 TaskInputField(
                   title: 'Title',
                   hint: 'Enter title here',
-                  controller: taskController.title,
+                  controller: taskController.newTitle, validator: null,
                 ),
                 TaskInputField(
-                  title: 'Note',
+                  title: 'My Task',
                   hint: 'Enter note here',
-                  controller: taskController.task,
+                  controller: taskController.newTask, validator: null,
                 ),
                 TaskInputField(
                   title: 'Date',
                   hint: DateFormat.yMEd().format(DateTime.now()),
-                  controller: taskController.date,
+                  controller: taskController.newDate, validator: null,
+                ),
+                TaskInputField(
+                  title: 'Time',
+                  hint: '00:00',
+                  controller: taskController.newTime, validator: null,
+                ),
+                TaskInputField(
+                  title: 'Repeat',
+                  hint: 'None',
+                  controller: taskController.newRepeat, validator: null,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -74,16 +94,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     Expanded(
                       child: TextButton(
                         onPressed: () => taskController.addTask(
-                            title: taskController.title.text,
-                            task: taskController.task.text,
-                            date: taskController.date.text,
-                            time: taskController.time.text,
-                            repeat: taskController.repeat.text,
+                            title: taskController.newTitle.text,
+                            task: taskController.newTask.text,
+                            date: taskController.newDate.text,
+                            time: taskController.newTime.text,
+                            repeat: taskController.newRepeat.text,
                             color: null),
                         style: TextButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.blue),
-                        child: const Text('Create Task'),
+                        child: const Text('Edit Task'),
                       ),
                     )
                   ],

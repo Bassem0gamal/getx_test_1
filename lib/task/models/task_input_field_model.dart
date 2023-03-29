@@ -5,14 +5,13 @@ class TaskInputField extends StatelessWidget {
   final String title;
   final String hint;
   final TextEditingController? controller;
-  final Widget? widget;
+  final String? Function(String?)? validator;
 
   const TaskInputField({
     super.key,
     required this.title,
     required this.hint,
-    required this.controller,
-    this.widget,
+    required this.controller, required this.validator,
   });
 
   @override
@@ -32,6 +31,7 @@ class TaskInputField extends StatelessWidget {
               autofocus: false,
               textAlign: TextAlign.start,
               controller: controller,
+              validator: validator,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 hintText: hint,
