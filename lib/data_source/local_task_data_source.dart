@@ -23,4 +23,10 @@ class LocalTaskDataSource implements TaskDataSource {
   List<TaskModel> getTasks() {
     throw UnimplementedError();
   }
+
+  @override
+  TaskModel? getTaskById(int id) {
+    // TODO: implement getTaskById
+    throw UnimplementedError();
+  }
 }

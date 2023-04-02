@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_test_1/task/add_task_starter.dart';
-import 'package:getx_test_1/task/stoped_for_now/edit_task_screen.dart';
+import 'package:getx_test_1/task/add_screen/add_task.dart';
+import 'package:getx_test_1/task/edit_screen/edit_task.dart';
 
 import 'home/home_screen.dart';
 
@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       getPages: [
         GetPage(name: HomeScreen.id, page: () => const HomeScreen()),
-        GetPage(name: AddTaskStarter.id, page: () => const AddTaskStarter()),
-        GetPage(name: EditTaskScreen.id, page: () => const EditTaskScreen()),
+        GetPage(name: AddTask.id, page: () => const AddTask()),
+        GetPage(name: EditTask.id, page: () => const EditTask()),
       ],
     );
   }

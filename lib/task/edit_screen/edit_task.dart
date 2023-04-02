@@ -1,59 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:getx_test_1/task/add_task_controller.dart';
 import 'package:getx_test_1/icons.dart';
+import 'package:getx_test_1/task/edit_screen/edit_task_controller.dart';
 import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
-import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
-class AddTaskStarter extends StatefulWidget {
-  const AddTaskStarter({Key? key}) : super(key: key);
+class EditTask extends StatefulWidget {
+  const EditTask({Key? key}) : super(key: key);
 
-  static String id = '/add_task_starter';
+  static String id = '/edit_task';
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
-  State<AddTaskStarter> createState() => _AddTaskStarterState();
+  State<EditTask> createState() => _EditTaskState();
 }
 
-class _AddTaskStarterState extends State<AddTaskStarter> {
-  AddTaskController addTaskController = AddTaskController();
+class _EditTaskState extends State<EditTask> {
+  EditTaskController editTaskController = EditTaskController();
+
+  @override
+  void initState() {
+    editTaskController.initialize();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Task'),
+        title: const Text('Edit Task Task'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Form(
-              key: AddTaskStarter.formKey,
+              key: EditTask.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Add Task',
+                    'Edit Task',
                     style: kHeadLine1TextStyle(color: Colors.black),
                   ),
                   TaskInputField(
                     title: 'Title',
-                    hint: 'Enter title here',
-                    controller: addTaskController.newTitle,
-                    validator: addTaskController.titleValidator,
+                    hint: null,
+                    controller: editTaskController.titleController,
+                    validator: editTaskController.titleValidator, maxLines: 1,
                   ),
                   TaskInputField(
                     title: 'Note',
-                    hint: 'Enter note here',
-                    controller: addTaskController.newNote,
-                    validator: addTaskController.noteValidator,
+                    hint: null,
+                    controller: editTaskController.noteController,
+                    validator: editTaskController.noteValidator, maxLines: 5,
                   ),
                   TaskInputField(
-                      title: 'Date',
-                      hint: DateFormat.yMEd().format(DateTime.now()),
-                      controller: addTaskController.newDate,
-                      validator: null),
+                    title: 'Date',
+                    hint: null,
+                    controller: editTaskController.dateController,
+                    validator: null, maxLines: 1,
+                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -80,12 +87,12 @@ class _AddTaskStarterState extends State<AddTaskStarter> {
                       Expanded(
                         child: TextButton(
                           onPressed: () {
-                            addTaskController.addTasks();
+                            editTaskController.editTasks();
                           },
                           style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
                               backgroundColor: Colors.blue),
-                          child: const Text('Create Task'),
+                          child: const Text('Edit Task'),
                         ),
                       )
                     ],

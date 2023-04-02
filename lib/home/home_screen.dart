@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:getx_test_1/home/home_controller.dart';
 import 'package:getx_test_1/home/widgets/home_calendar_widget.dart';
 import 'package:getx_test_1/home/widgets/home_tasks_widget.dart';
+import 'package:getx_test_1/task/edit_screen/edit_task.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
-import '../task/add_task_starter.dart';
+import '../task/add_screen/add_task.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,17 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> openAddTask() async {
-    final  result =  await Get.toNamed(AddTaskStarter.id);
-    if (result == true) {
+    final addResult = await Get.toNamed(AddTask.id);
+    if (addResult == true) {
+      homeController.loadTasks();
+    }
+  }
+
+  Future<void> openEditTask(int id) async {
+    final editResult = await Get.toNamed(EditTask.id,arguments: id);
+    if (editResult == true) {
       homeController.loadTasks();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    DateTime selectedDate;
-    const noTask = 1;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Tasks'),
@@ -80,7 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         : ListView.builder(
                             itemCount: homeController.tasks.length,
                             itemBuilder: (context, int i) {
-                              return TaskItem(taskModel: homeController.tasks[i]);
+                              return TaskItem(
+                                taskModel: homeController.tasks[i],
+                                editTask: () => openEditTask(homeController.tasks[i].id),
+                              );
                             },
                           );
                   },
