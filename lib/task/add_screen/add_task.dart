@@ -5,17 +5,17 @@ import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 
-class AddTask extends StatefulWidget {
-  const AddTask({Key? key}) : super(key: key);
+class AddTaskScreen extends StatefulWidget {
+  const AddTaskScreen({Key? key}) : super(key: key);
 
   static String id = '/add_task';
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
-  State<AddTask> createState() => _AddTaskState();
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
-class _AddTaskState extends State<AddTask> {
+class _AddTaskScreenState extends State<AddTaskScreen> {
   AddTaskController addTaskController = AddTaskController();
 
   @override
@@ -29,7 +29,7 @@ class _AddTaskState extends State<AddTask> {
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Form(
-              key: AddTask.formKey,
+              key: AddTaskScreen.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,20 +40,23 @@ class _AddTaskState extends State<AddTask> {
                   TaskInputField(
                     title: 'Title',
                     hint: 'Enter title here',
-                    controller: addTaskController.title,
-                    validator: addTaskController.titleValidator, maxLines: 1,
+                    controller: addTaskController.titleController,
+                    validator: addTaskController.titleValidator,
+                    maxLines: 1,
                   ),
                   TaskInputField(
                     title: 'Note',
                     hint: 'Enter note here',
-                    controller: addTaskController.note,
-                    validator: addTaskController.noteValidator, maxLines: 5,
+                    controller: addTaskController.noteController,
+                    validator: addTaskController.noteValidator,
+                    maxLines: 5,
                   ),
                   TaskInputField(
                     title: 'Date',
                     hint: DateFormat.yMEd().format(DateTime.now()),
-                    controller: addTaskController.date,
-                    validator: null, maxLines: 1,
+                    controller: addTaskController.dateController,
+                    validator: null,
+                    maxLines: 1,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,

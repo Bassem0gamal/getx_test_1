@@ -17,7 +17,9 @@ class EditTaskController extends GetxController {
   void initialize() {
     TaskModel? task = _dataSource.getTaskById(taskId);
     if (task == null) {
-      //ToDo close screen and show error massage
+      Get.back();
+      Get.snackbar('Error', 'There was something unexpected',
+          colorText: Colors.red, snackPosition: SnackPosition.BOTTOM);
     } else {
       titleController.text = task.title;
       noteController.text = task.note;
@@ -27,7 +29,7 @@ class EditTaskController extends GetxController {
   }
 
   void editTasks() {
-    if (EditTask.formKey.currentState!.validate()) {
+    if (EditTaskScreen.formKey.currentState!.validate()) {
       _dataSource.editTask(
           title: titleController.text,
           note: noteController.text,

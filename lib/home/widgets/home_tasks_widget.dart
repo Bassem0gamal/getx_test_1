@@ -24,11 +24,12 @@ class NoTask extends StatelessWidget {
 class TaskItem extends StatelessWidget {
   const TaskItem({
     super.key,
-    required this.taskModel, required this.editTask,
+    required this.taskModel,
+    required this.onEditPressed,
   });
 
   final TaskModel taskModel;
-  final Function() editTask;
+  final Function() onEditPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class TaskItem extends StatelessWidget {
                           child: Align(
                               alignment: Alignment.topRight,
                               child: IconButton(
-                                onPressed: () => editTask(),
+                                onPressed: () => onEditPressed(),
                                 icon: const Icon(
                                   Icons.edit_note,
                                   size: 24,

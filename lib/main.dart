@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
       getPages: [
         GetPage(name: HomeScreen.id, page: () => const HomeScreen()),
-        GetPage(name: AddTask.id, page: () => const AddTask()),
-        GetPage(name: EditTask.id, page: () => const EditTask()),
+        GetPage(name: AddTaskScreen.id, page: () => const AddTaskScreen()),
+        GetPage(name: EditTaskScreen.id, page: () => const EditTaskScreen()),
       ],
     );
   }
