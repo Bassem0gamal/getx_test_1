@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_test_1/task/models/task_model.dart';
+import '../../task/task_models/task_model.dart';
 
 class NoTask extends StatelessWidget {
   const NoTask({Key? key}) : super(key: key);
@@ -24,7 +24,8 @@ class NoTask extends StatelessWidget {
 class TaskItem extends StatelessWidget {
   const TaskItem({
     super.key,
-    required this.taskModel, required this.editTask,
+    required this.taskModel,
+    required this.editTask,
   });
 
   final TaskModel taskModel;

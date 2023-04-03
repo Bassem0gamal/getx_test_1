@@ -6,7 +6,6 @@ import 'package:getx_test_1/task/edit_screen/edit_task.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
-
 import '../task/add_screen/add_task.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> openEditTask(int id) async {
-    final editResult = await Get.toNamed(EditTask.id,arguments: id);
+    final editResult = await Get.toNamed(EditTask.id, arguments: id);
     if (editResult == true) {
       homeController.loadTasks();
     }
@@ -87,7 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (context, int i) {
                               return TaskItem(
                                 taskModel: homeController.tasks[i],
-                                editTask: () => openEditTask(homeController.tasks[i].id),
+                                editTask: () =>
+                                    openEditTask(homeController.tasks[i].id),
                               );
                             },
                           );

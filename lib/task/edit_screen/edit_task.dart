@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task_controller.dart';
-import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
-import 'package:get/get.dart';
+import '../task_models/task_input_field_model.dart';
 
 class EditTask extends StatefulWidget {
   const EditTask({Key? key}) : super(key: key);
@@ -47,19 +46,22 @@ class _EditTaskState extends State<EditTask> {
                     title: 'Title',
                     hint: null,
                     controller: editTaskController.titleController,
-                    validator: editTaskController.titleValidator, maxLines: 1,
+                    validator: editTaskController.titleValidator,
+                    maxLines: 1,
                   ),
                   TaskInputField(
                     title: 'Note',
                     hint: null,
                     controller: editTaskController.noteController,
-                    validator: editTaskController.noteValidator, maxLines: 5,
+                    validator: editTaskController.noteValidator,
+                    maxLines: 5,
                   ),
                   TaskInputField(
                     title: 'Date',
                     hint: null,
                     controller: editTaskController.dateController,
-                    validator: null, maxLines: 1,
+                    validator: null,
+                    maxLines: 1,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,

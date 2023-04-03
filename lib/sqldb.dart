@@ -17,12 +17,12 @@ class SqlDatabase {
 
   intialDataBase() async {
     String dataBasePath = await getDatabasesPath();
-    String path = join(dataBasePath, 'notes.database');
-    Database myDataBase = await openDatabase(path, onCreate: onCreate);
+    String path = join(dataBasePath, 'tasks.database');
+    Database myDataBase = await openDatabase(path, onCreate: _onCreate);
     return myDataBase;
   }
 
-  Future onCreate(Database dataBase, int version) async {
+  Future _onCreate(Database dataBase, int version) async {
     Batch batch = dataBase.batch();
 
     batch.execute('''
@@ -30,10 +30,7 @@ class SqlDatabase {
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
     "task" TEXT NOT NULL,
-    "date" TEXT NOT NULL,
-    "time" TEXT NOT NULL,
-    "repeat" TEXT NOT NULL,
-    "color" TEXT NOT NULL
+    "date" TEXT NOT NULL
     )
     ''');
 
