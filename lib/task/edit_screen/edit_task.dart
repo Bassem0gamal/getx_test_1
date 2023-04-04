@@ -54,15 +54,10 @@ class _EditTaskState extends State<EditTask> {
                     hint: null,
                     controller: editTaskController.noteController,
                     validator: editTaskController.noteValidator,
-                    maxLines: 5,
+                    maxLines: 7,
                   ),
-                  TaskInputField(
-                    title: 'Date',
-                    hint: null,
-                    controller: editTaskController.dateController,
-                    validator: null,
-                    maxLines: 1,
-                  ),
+                  const SizedBox(height: 8.0),
+                  Text(editTaskController.date),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [

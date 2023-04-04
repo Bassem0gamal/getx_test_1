@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_test_1/data_source/in_memory_task_data_source.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task.dart';
+import 'package:intl/intl.dart';
 import '../task_models/task_model.dart';
 
 class EditTaskController extends GetxController {
@@ -11,7 +12,7 @@ class EditTaskController extends GetxController {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
+  final String date = DateFormat.yMEd().format(DateTime.now());
 
   void initialize() {
     TaskModel? task = _dataSource.getTaskById(taskId);
@@ -22,7 +23,6 @@ class EditTaskController extends GetxController {
     } else {
       titleController.text = task.title;
       noteController.text = task.note;
-      dateController.text = task.time;
     }
     super.onInit();
   }
@@ -32,7 +32,7 @@ class EditTaskController extends GetxController {
       _dataSource.editTask(
           title: titleController.text,
           note: noteController.text,
-          date: dateController.text,
+          date: date,
           id: taskId);
 
       Get.back(result: true);
@@ -43,7 +43,6 @@ class EditTaskController extends GetxController {
   void onClose() {
     titleController.dispose();
     noteController.dispose();
-    dateController.dispose();
 
     super.dispose();
   }

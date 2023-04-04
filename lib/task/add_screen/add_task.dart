@@ -49,15 +49,10 @@ class _AddTaskState extends State<AddTask> {
                     hint: 'Enter note here',
                     controller: addTaskController.note,
                     validator: addTaskController.noteValidator,
-                    maxLines: 5,
+                    maxLines: 7,
                   ),
-                  TaskInputField(
-                    title: 'Date',
-                    hint: null,
-                    controller: addTaskController.date,
-                    validator: null,
-                    maxLines: 1,
-                  ),
+                  const SizedBox(height: 8.0),
+                  Text(addTaskController.date),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [

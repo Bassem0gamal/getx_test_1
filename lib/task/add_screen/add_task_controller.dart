@@ -10,15 +10,15 @@ class AddTaskController extends GetxController {
 
   final TextEditingController title = TextEditingController();
   final TextEditingController note = TextEditingController();
-  final TextEditingController date =
-      TextEditingController(text: DateFormat.yMEd().format(DateTime.now()));
+  final String date =
+       DateFormat.yMEd().format(DateTime.now());
 
   void addTasks() {
     if (AddTask.formKey.currentState!.validate()) {
       _dataSource.addTask(
         title: title.text,
         note: note.text,
-        date: date.text,
+        date: date,
       );
       Get.back(result: true);
     }
@@ -28,7 +28,6 @@ class AddTaskController extends GetxController {
   void onClose() {
     title.dispose();
     note.dispose();
-    date.dispose();
 
     super.dispose();
   }
