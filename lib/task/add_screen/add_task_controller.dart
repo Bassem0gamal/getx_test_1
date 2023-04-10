@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_test_1/data_source/local_task_data_source.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/add_screen/add_task.dart';
 import 'package:getx_test_1/data_source/in_memory_task_data_source.dart';
 import 'package:intl/intl.dart';
 
 class AddTaskController extends GetxController {
-  final TaskDataSource _dataSource = InMemoryTaskDataSource.instance;
+  final TaskDataSource _dataSource = LocalTaskDataSource();
 
-  final TextEditingController title = TextEditingController();
-  final TextEditingController note = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController taskController = TextEditingController();
   final String date =
        DateFormat.yMEd().format(DateTime.now());
 
   void addTasks() {
     if (AddTask.formKey.currentState!.validate()) {
       _dataSource.addTask(
-        title: title.text,
-        note: note.text,
+        title: titleController.text,
+        task: taskController.text,
         date: date,
       );
       Get.back(result: true);
@@ -26,8 +27,8 @@ class AddTaskController extends GetxController {
 
   @override
   void onClose() {
-    title.dispose();
-    note.dispose();
+    titleController.dispose();
+    taskController.dispose();
 
     super.dispose();
   }

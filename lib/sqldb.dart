@@ -18,7 +18,7 @@ class SqlDatabase {
   intialDataBase() async {
     String dataBasePath = await getDatabasesPath();
     String path = join(dataBasePath, 'tasks.database');
-    Database myDataBase = await openDatabase(path, onCreate: _onCreate);
+    Database myDataBase = await openDatabase(path, onCreate: _onCreate,version: 1);
     return myDataBase;
   }
 
@@ -39,31 +39,31 @@ class SqlDatabase {
     print('Create DATABASE and TABLE =====');
   }
 
-  readData(String sql) async {
+  Future<List<Map>> readData(String sql) async {
     Database? myDataBase = await dataBase;
     List<Map> response = await myDataBase!.rawQuery(sql);
     return response;
   }
 
-  insertData(String sql) async {
+  Future<int> insertData(String sql) async {
     Database? myDataBase = await dataBase;
     int response = await myDataBase!.rawInsert(sql);
     return response;
   }
 
-  updateData(String sql) async {
+  Future<int> updateData(String sql) async {
     Database? myDb = await dataBase;
     int response = await myDb!.rawUpdate(sql);
     return response;
   }
 
-  deleteData(String sql) async {
+  Future<int> deleteData(String sql) async {
     Database? myDataBase = await dataBase;
     int response = await myDataBase!.rawDelete(sql);
     return response;
   }
 
-  deleteDataBase() async {
+  Future<void> deleteDataBase() async {
     String databasePath = await getDatabasesPath();
     String path = join(databasePath, 'notes.db');
     await deleteDatabase(path);

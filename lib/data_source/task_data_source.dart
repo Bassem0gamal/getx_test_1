@@ -1,24 +1,24 @@
 import '../task/task_models/task_model.dart';
 
 abstract class TaskDataSource {
-  List<TaskModel> getTasks();
+  Future<List<TaskModel>> getTasks();
 
-  TaskModel? getTaskById(int id);
+  Future<TaskModel?> getTaskById(int id);
 
-  void addTask({
+  Future<void> addTask({
     required String title,
-    required String note,
+    required String task,
     required String date,
   });
 
-  void editTask({
+  Future<void> editTask({
     required int id,
     required String title,
-    required String note,
+    required String task,
     required String date,
   });
 
-  void deleteTask(int id);
+  Future<void> deleteTask(int id);
 
-  void deleteAll();
+  Future<void> deleteAll();
 }

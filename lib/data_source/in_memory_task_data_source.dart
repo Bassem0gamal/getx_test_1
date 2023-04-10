@@ -11,52 +11,52 @@ class InMemoryTaskDataSource implements TaskDataSource {
   final Map<int, TaskModel> _map = {};
 
   @override
-  void addTask(
+  Future<void> addTask(
       {required String title,
-      required String note,
+      required String task,
       required String date}) async {
     int id = _map.length + 1;
     TaskModel taskModel = TaskModel(
       id: id,
       title: title,
-      note: note,
+      note: task,
       time: date,
     );
     _map[id] = taskModel;
   }
 
   @override
-  void deleteAll() {
+  Future<void> deleteAll() async {
     _map.clear();
   }
 
   @override
-  void deleteTask(int id) {
+  Future<void> deleteTask(int id) async {
     _map.remove(id);
   }
 
   @override
-  void editTask(
+  Future<void> editTask(
       {required int id,
       required String title,
-      required String note,
-      required String date}) {
+      required String task,
+      required String date}) async {
     TaskModel taskModel = TaskModel(
       id: id,
       title: title,
-      note: note,
+      note: task,
       time: date,
     );
     _map[id] = taskModel;
   }
 
   @override
-  List<TaskModel> getTasks() {
+  Future<List<TaskModel>> getTasks() async {
     return _map.values.toList();
   }
 
   @override
-  TaskModel? getTaskById(int id) {
+  Future<TaskModel?> getTaskById(int id) async {
     return _map[id];
   }
 }

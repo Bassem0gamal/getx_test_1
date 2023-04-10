@@ -52,7 +52,7 @@ class _EditTaskState extends State<EditTask> {
                   TaskInputField(
                     title: 'Note',
                     hint: null,
-                    controller: editTaskController.noteController,
+                    controller: editTaskController.taskController,
                     validator: editTaskController.noteValidator,
                     maxLines: 7,
                   ),

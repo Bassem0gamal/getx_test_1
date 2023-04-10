@@ -40,14 +40,14 @@ class _AddTaskState extends State<AddTask> {
                   TaskInputField(
                     title: 'Title',
                     hint: 'Enter title here',
-                    controller: addTaskController.title,
+                    controller: addTaskController.titleController,
                     validator: addTaskController.titleValidator,
                     maxLines: 1,
                   ),
                   TaskInputField(
                     title: 'Note',
                     hint: 'Enter note here',
-                    controller: addTaskController.note,
+                    controller: addTaskController.taskController,
                     validator: addTaskController.noteValidator,
                     maxLines: 7,
                   ),
