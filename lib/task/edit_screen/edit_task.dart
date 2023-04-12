@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task_controller.dart';
 import 'package:getx_test_1/text_style.dart';
 import '../task_models/task_input_field_model.dart';
@@ -64,19 +63,8 @@ class _EditTaskState extends State<EditTask> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Color'),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Row(
-                                children: [
-                                  blueCircleIcon(),
-                                  redCircleIcon(),
-                                  yellowCircleIcon(),
-                                ],
-                              ),
-                            ),
+                          children: const [
+                            SizedBox(width: 100.0),
                           ],
                         ),
                       ),

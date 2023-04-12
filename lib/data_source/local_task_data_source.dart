@@ -8,8 +8,7 @@ class LocalTaskDataSource implements TaskDataSource {
   @override
   Future<List<TaskModel>> getTasks() async {
     List<TaskModel> result = [];
-
-    List<Map> response = await _sqlDatabase.readData("SELECT* FROM tasks");
+    List<Map> response = await _sqlDatabase.readData("SELECT * FROM tasks");
     for (var item in response) {
       TaskModel taskModel = TaskModel(
           id: item["id"],
@@ -22,9 +21,21 @@ class LocalTaskDataSource implements TaskDataSource {
   }
 
   @override
-  Future<TaskModel?> getTaskById(int id) {
-    // TODO: implement getTaskById
-    throw UnimplementedError();
+  Future<TaskModel?> getTaskById(int id) async {
+    List<Map> response = await _sqlDatabase.readData('''
+        SELECT * FROM tasks 
+        WHERE id = "$id"
+        ''');
+    if (response.isEmpty) {
+      return null;
+    } else {
+      Map map = response.first;
+      return TaskModel(
+          id: map["id"],
+          title: map["title"],
+          note: map["task"],
+          time: map["date"]);
+    }
   }
 
   @override
@@ -41,9 +52,9 @@ class LocalTaskDataSource implements TaskDataSource {
             )
       ''');
     if (response != 0) {
-      print('Task added success');
+      // print('Task added success');
     } else {
-      print('Failed to add new task');
+      // print('Failed to add new task');
     }
   }
 
@@ -61,19 +72,19 @@ class LocalTaskDataSource implements TaskDataSource {
       WHERE id = "$id"
       ''');
     if (response != 0) {
-      print('Edit success');
+      // print('Edit success');
     } else {
-      print('Failed to edit the note!');
+      // print('Failed to edit the note!');
     }
   }
 
   @override
   Future<void> deleteAll() async {
-    _sqlDatabase.deleteDataBase();
+    _sqlDatabase.deleteAllData("DELETE FROM tasks");
   }
 
   @override
   Future<void> deleteTask(int id) async {
-    _sqlDatabase.deleteData("DELETE FROM tasks WHERE id = $id");
+    await _sqlDatabase.deleteData("DELETE FROM tasks WHERE id = '$id'");
   }
 }

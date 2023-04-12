@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:getx_test_1/data_source/local_task_data_source.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/add_screen/add_task.dart';
-import 'package:getx_test_1/data_source/in_memory_task_data_source.dart';
 import 'package:intl/intl.dart';
 
 class AddTaskController extends GetxController {
@@ -11,8 +10,7 @@ class AddTaskController extends GetxController {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController taskController = TextEditingController();
-  final String date =
-       DateFormat.yMEd().format(DateTime.now());
+  final String date = DateFormat.yMEd().format(DateTime.now());
 
   void addTasks() {
     if (AddTask.formKey.currentState!.validate()) {
@@ -21,6 +19,7 @@ class AddTaskController extends GetxController {
         task: taskController.text,
         date: date,
       );
+      update();
       Get.back(result: true);
     }
   }
