@@ -2,19 +2,13 @@ import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/models/task_model.dart';
 
 class InMemoryTaskDataSource implements TaskDataSource {
-  static final InMemoryTaskDataSource instance =
-      InMemoryTaskDataSource._private();
-
-  InMemoryTaskDataSource._private();
-
-  final Map<int, TaskModel> _map = {
-
-
-  };
+  final Map<int, TaskModel> _map = {};
 
   @override
   void addTask(
-      {required String title, required String note, required String date}) async{
+      {required String title,
+      required String note,
+      required String date}) async {
     int id = _map.length + 1;
     TaskModel taskModel = TaskModel(
       id: id,

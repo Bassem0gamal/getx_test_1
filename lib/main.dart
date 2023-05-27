@@ -4,8 +4,10 @@ import 'package:getx_test_1/task/add_screen/add_task.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task.dart';
 
 import 'home/home_screen.dart';
+import 'locator.dart';
 
 void main() {
+  initLocator();
   runApp(const MyApp());
 }
 

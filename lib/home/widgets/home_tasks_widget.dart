@@ -33,19 +33,15 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10.0)),
+    return Card(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 0.0),
+            child: SizedBox(
               child: Padding(
                 padding:
-                    const EdgeInsets.only(right: 8.0, left: 8.0, bottom: 8.0),
+                    const EdgeInsets.only( left: 8.0, bottom: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -54,7 +50,7 @@ class TaskItem extends StatelessWidget {
                         Text(
                           taskModel.title,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 20),
+                              color: Colors.blue, fontSize: 20),
                         ),
                         Expanded(
                           child: Align(
@@ -64,7 +60,7 @@ class TaskItem extends StatelessWidget {
                                 icon: const Icon(
                                   Icons.edit_note,
                                   size: 24,
-                                  color: Colors.white,
+                                  color: Colors.blue,
                                 ),
                               )),
                         ),
@@ -73,14 +69,14 @@ class TaskItem extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       taskModel.note,
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                      style: const TextStyle(color: Colors.blue, fontSize: 14),
                     ),
                     const SizedBox(height: 16),
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         taskModel.time,
-                        style: TextStyle(color: Colors.grey[350], fontSize: 10),
+                        style: const TextStyle(color: Colors.grey, fontSize: 10),
                       ),
                     ),
                   ],
@@ -88,9 +84,9 @@ class TaskItem extends StatelessWidget {
               ),
             ),
           ),
-        ),
-        const SizedBox(height: 4),
-      ],
+          const SizedBox(height: 4),
+        ],
+      ),
     );
   }
 }
