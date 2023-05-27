@@ -1,6 +1,5 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
-
 import '../../text_style.dart';
 
 class HomeCalendarWidget extends StatelessWidget {
@@ -8,10 +7,8 @@ class HomeCalendarWidget extends StatelessWidget {
 
   static DateTime? selectedDate;
 
-
   @override
   Widget build(BuildContext context) {
-
     return DatePicker(
       DateTime.now(),
       height: 100,

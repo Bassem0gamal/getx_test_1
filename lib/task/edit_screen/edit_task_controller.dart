@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_test_1/data_source/in_memory_task_data_source.dart';
+import 'package:getx_test_1/data_source/local_task_data_source.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task.dart';
-
-import '../models/task_model.dart';
+import 'package:intl/intl.dart';
+import '../task_models/task_model.dart';
 
 class EditTaskController extends GetxController {
-  final TaskDataSource _dataSource = InMemoryTaskDataSource.instance;
+  final TaskDataSource _dataSource = LocalTaskDataSource();
   int taskId = Get.arguments;
 
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController noteController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
+  final TextEditingController taskController = TextEditingController();
+  final String date = DateFormat.yMEd().format(DateTime.now());
 
-  void initialize() {
-    TaskModel? task = _dataSource.getTaskById(taskId);
+  void initialize() async {
+    TaskModel? task = await _dataSource.getTaskById(taskId);
     if (task == null) {
       Get.back();
       Get.snackbar('Error', 'There was something unexpected',
           colorText: Colors.red, snackPosition: SnackPosition.BOTTOM);
     } else {
       titleController.text = task.title;
-      noteController.text = task.note;
-      dateController.text = task.time;
+      taskController.text = task.note;
     }
     super.onInit();
   }
@@ -32,8 +31,8 @@ class EditTaskController extends GetxController {
     if (EditTaskScreen.formKey.currentState!.validate()) {
       _dataSource.editTask(
           title: titleController.text,
-          note: noteController.text,
-          date: dateController.text,
+          task: taskController.text,
+          date: date,
           id: taskId);
 
       Get.back(result: true);
@@ -43,8 +42,7 @@ class EditTaskController extends GetxController {
   @override
   void onClose() {
     titleController.dispose();
-    noteController.dispose();
-    dateController.dispose();
+    taskController.dispose();
 
     super.dispose();
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task_controller.dart';
-import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
 
 class EditTaskScreen extends StatefulWidget {
@@ -46,39 +44,26 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     title: 'Title',
                     hint: null,
                     controller: editTaskController.titleController,
-                    validator: editTaskController.titleValidator, maxLines: 1,
+                    validator: editTaskController.titleValidator,
+                    maxLines: 1,
                   ),
                   TaskInputField(
                     title: 'Note',
                     hint: null,
-                    controller: editTaskController.noteController,
-                    validator: editTaskController.noteValidator, maxLines: 5,
+                    controller: editTaskController.taskController,
+                    validator: editTaskController.noteValidator,
+                    maxLines: 7,
                   ),
-                  TaskInputField(
-                    title: 'Date',
-                    hint: null,
-                    controller: editTaskController.dateController,
-                    validator: null, maxLines: 1,
-                  ),
+                  const SizedBox(height: 8.0),
+                  Text(editTaskController.date),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Color'),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Row(
-                                children: [
-                                  blueCircleIcon(),
-                                  redCircleIcon(),
-                                  yellowCircleIcon(),
-                                ],
-                              ),
-                            ),
+                          children: const [
+                            SizedBox(width: 100.0),
                           ],
                         ),
                       ),

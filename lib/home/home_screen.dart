@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/home/home_controller.dart';
-import 'package:getx_test_1/home/widgets/home_calendar_widget.dart';
 import 'package:getx_test_1/home/widgets/home_tasks_widget.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
-
 import '../task/add_screen/add_task.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,6 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Future<void> deleteAllTasks() async {
+    homeController.deleteAllTasks();
+  }
+
+  Future<void> deleteTask(int id, int i) async {
+    homeController.deleteTask(id, i);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,16 +64,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        'Today',
+                        style: kHeadLine2TextStyle(),
+                      ),
+                      const SizedBox(height: 4.0),
+                      Text(
                         DateFormat.yMMMMd().format(DateTime.now()),
                         style: kBodyTextStyle(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        'Today',
-                        style: kHeadLine2TextStyle(),
-                      ),
                     ],
                   ),
+                  ElevatedButton(
+                      onPressed: () => deleteAllTasks(),
+                      child: const Text('Delete all')),
                   ElevatedButton(
                     onPressed: () => openAddTask(),
                     child: const Text('+ New Task'),
@@ -75,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(height: 16),
-              const HomeCalendarWidget(),
               const SizedBox(height: 16.0),
               Expanded(
                 child: Obx(
@@ -87,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (context, int i) {
                               return TaskItem(
                                 taskModel: homeController.tasks[i],
+
                                 onEditPressed: () => openEditTask(homeController.tasks[i].id),
                               );
                             },

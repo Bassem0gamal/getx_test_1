@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_test_1/data_source/local_task_data_source.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/add_screen/add_task.dart';
+
 import 'package:getx_test_1/data_source/in_memory_task_data_source.dart';
 
 class AddTaskController extends GetxController {
@@ -18,6 +20,7 @@ class AddTaskController extends GetxController {
         note: noteController.text,
         date: dateController.text,
       );
+      update();
       Get.back(result: true);
     }
   }
@@ -27,7 +30,6 @@ class AddTaskController extends GetxController {
     titleController.dispose();
     noteController.dispose();
     dateController.dispose();
-
     super.dispose();
   }
 

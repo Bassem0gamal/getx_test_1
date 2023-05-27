@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/task/add_screen/add_task_controller.dart';
-import 'package:getx_test_1/icons.dart';
-import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
-import 'package:intl/intl.dart';
+import '../task_models/task_input_field_model.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({Key? key}) : super(key: key);
@@ -58,25 +56,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     validator: null,
                     maxLines: 1,
                   ),
+                  const SizedBox(height: 8.0),
+                  Text(addTaskController.date),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Color'),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Row(
-                                children: [
-                                  blueCircleIcon(),
-                                  redCircleIcon(),
-                                  yellowCircleIcon(),
-                                ],
-                              ),
-                            ),
+                          children: const [
+                            SizedBox(width: 100),
                           ],
                         ),
                       ),
