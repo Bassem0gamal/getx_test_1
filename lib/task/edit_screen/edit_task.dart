@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task_controller.dart';
 import 'package:getx_test_1/text_style.dart';
-import '../task_models/task_input_field_model.dart';
 
-class EditTask extends StatefulWidget {
-  const EditTask({Key? key}) : super(key: key);
+class EditTaskScreen extends StatefulWidget {
+  const EditTaskScreen({Key? key}) : super(key: key);
 
   static String id = '/edit_task';
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
-  State<EditTask> createState() => _EditTaskState();
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
-class _EditTaskState extends State<EditTask> {
+class _EditTaskScreenState extends State<EditTaskScreen> {
   EditTaskController editTaskController = EditTaskController();
 
   @override
@@ -33,7 +32,7 @@ class _EditTaskState extends State<EditTask> {
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Form(
-              key: EditTask.formKey,
+              key: EditTaskScreen.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -25,14 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> openAddTask() async {
-    final addResult = await Get.toNamed(AddTask.id);
+    final addResult = await Get.toNamed(AddTaskScreen.id);
     if (addResult == true) {
       homeController.loadTasks();
     }
   }
 
   Future<void> openEditTask(int id) async {
-    final editResult = await Get.toNamed(EditTask.id, arguments: id);
+    final editResult = await Get.toNamed(EditTaskScreen.id,arguments: id);
     if (editResult == true) {
       homeController.loadTasks();
     }
@@ -96,10 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (context, int i) {
                               return TaskItem(
                                 taskModel: homeController.tasks[i],
-                                editTask: () =>
-                                    openEditTask(homeController.tasks[i].id),
-                                deleteTask: () =>
-                                    deleteTask(homeController.tasks[i].id, i),
+
+                                onEditPressed: () => openEditTask(homeController.tasks[i].id),
                               );
                             },
                           );

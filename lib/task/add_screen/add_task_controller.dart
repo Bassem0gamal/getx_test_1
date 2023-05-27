@@ -3,21 +3,22 @@ import 'package:get/get.dart';
 import 'package:getx_test_1/data_source/local_task_data_source.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/add_screen/add_task.dart';
-import 'package:intl/intl.dart';
+
+import 'package:getx_test_1/data_source/in_memory_task_data_source.dart';
 
 class AddTaskController extends GetxController {
-  final TaskDataSource _dataSource = LocalTaskDataSource();
+  final TaskDataSource _dataSource = InMemoryTaskDataSource.instance;
 
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController taskController = TextEditingController();
-  final String date = DateFormat.yMEd().format(DateTime.now());
+  final TextEditingController noteController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
 
   void addTasks() {
-    if (AddTask.formKey.currentState!.validate()) {
+    if (AddTaskScreen.formKey.currentState!.validate()) {
       _dataSource.addTask(
         title: titleController.text,
-        task: taskController.text,
-        date: date,
+        note: noteController.text,
+        date: dateController.text,
       );
       update();
       Get.back(result: true);
@@ -27,8 +28,8 @@ class AddTaskController extends GetxController {
   @override
   void onClose() {
     titleController.dispose();
-    taskController.dispose();
-
+    noteController.dispose();
+    dateController.dispose();
     super.dispose();
   }
 

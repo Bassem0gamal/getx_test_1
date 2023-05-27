@@ -28,7 +28,7 @@ class EditTaskController extends GetxController {
   }
 
   void editTasks() {
-    if (EditTask.formKey.currentState!.validate()) {
+    if (EditTaskScreen.formKey.currentState!.validate()) {
       _dataSource.editTask(
           title: titleController.text,
           task: taskController.text,
