@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task.dart';
 import 'package:intl/intl.dart';
-import '../../locator.dart';
 import '../models/task_model.dart';
 
 class EditTaskController extends GetxController {
-  final TaskDataSource _dataSource = locator<TaskDataSource>();
+  final TaskDataSource _dataSource ;
+  EditTaskController(this._dataSource);
 
 
   int taskId = Get.arguments;

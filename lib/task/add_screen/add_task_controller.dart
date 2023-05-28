@@ -4,12 +4,12 @@ import 'package:getx_test_1/data_source/task_data_source.dart';
 import 'package:getx_test_1/task/add_screen/add_task.dart';
 import 'package:intl/intl.dart';
 
-import '../../locator.dart';
 
 class AddTaskController extends GetxController {
-  final TaskDataSource _dataSource = locator<TaskDataSource>();
 
+  AddTaskController(this._dataSource);
 
+  final TaskDataSource _dataSource;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
 
