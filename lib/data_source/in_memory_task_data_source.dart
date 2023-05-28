@@ -1,5 +1,5 @@
 import 'package:getx_test_1/data_source/task_data_source.dart';
-import '../task/task_models/task_model.dart';
+import 'package:getx_test_1/task/models/task_model.dart';
 
 class InMemoryTaskDataSource implements TaskDataSource {
   static final InMemoryTaskDataSource instance =
@@ -7,55 +7,56 @@ class InMemoryTaskDataSource implements TaskDataSource {
 
   InMemoryTaskDataSource._private();
 
-  final Map<int, TaskModel> _map = {};
+  final Map<int, TaskModel> _map = {
+
+
+  };
 
   @override
-  Future<void> addTask(
-      {required String title,
-      required String task,
-      required String date}) async {
+  void addTask(
+      {required String title, required String note, required String date}) async{
     int id = _map.length + 1;
     TaskModel taskModel = TaskModel(
       id: id,
       title: title,
-      note: task,
+      note: note,
       time: date,
     );
     _map[id] = taskModel;
   }
 
   @override
-  Future<void> deleteAll() async {
+  void deleteAll() {
     _map.clear();
   }
 
   @override
-  Future<void> deleteTask(int id) async {
+  void deleteTask(int id) {
     _map.remove(id);
   }
 
   @override
-  Future<void> editTask(
+  void editTask(
       {required int id,
       required String title,
-      required String task,
-      required String date}) async {
+      required String note,
+      required String date}) {
     TaskModel taskModel = TaskModel(
       id: id,
       title: title,
-      note: task,
+      note: note,
       time: date,
     );
     _map[id] = taskModel;
   }
 
   @override
-  Future<List<TaskModel>> getTasks() async {
+  List<TaskModel> getTasks() {
     return _map.values.toList();
   }
 
   @override
-  Future<TaskModel?> getTaskById(int id) async {
+  TaskModel? getTaskById(int id) {
     return _map[id];
   }
 }

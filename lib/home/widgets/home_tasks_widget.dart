@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../task/task_models/task_model.dart';
+import 'package:getx_test_1/task/models/task_model.dart';
 
 class NoTask extends StatelessWidget {
   const NoTask({Key? key}) : super(key: key);
@@ -44,8 +44,8 @@ class TaskItem extends StatelessWidget {
                   color: Colors.blue,
                   borderRadius: BorderRadius.circular(10.0)),
               child: Padding(
-                padding: const EdgeInsets.only(
-                    right: 8.0, left: 8.0, bottom: 8.0, top: 8.0),
+                padding:
+                    const EdgeInsets.only(right: 8.0, left: 8.0, bottom: 8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -54,7 +54,7 @@ class TaskItem extends StatelessWidget {
                         Text(
                           taskModel.title,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 22),
+                              color: Colors.white, fontSize: 20),
                         ),
                         Expanded(
                           child: Align(
@@ -68,19 +68,6 @@ class TaskItem extends StatelessWidget {
                                 ),
                               )),
                         ),
-                        const SizedBox(width: 16.0),
-                        Align(
-                            alignment: Alignment.topRight,
-                            child: IconButton(
-                              onPressed: () => deleteTask(),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              icon: const Icon(
-                                Icons.close,
-                                size: 24,
-                                color: Colors.white,
-                              ),
-                            )),
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -88,18 +75,13 @@ class TaskItem extends StatelessWidget {
                       taskModel.note,
                       style: const TextStyle(color: Colors.white, fontSize: 14),
                     ),
-                    Row(
-                      children: [
-                        const SizedBox(height: 16),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            taskModel.time,
-                            style: TextStyle(
-                                color: Colors.grey[350], fontSize: 10),
-                          ),
-                        ),
-                      ],
+                    const SizedBox(height: 16),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        taskModel.time,
+                        style: TextStyle(color: Colors.grey[350], fontSize: 10),
+                      ),
                     ),
                   ],
                 ),
