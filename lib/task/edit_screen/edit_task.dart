@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/icons.dart';
+import 'package:getx_test_1/locator.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task_controller.dart';
 import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
+import 'package:intl/intl.dart';
 
 class EditTaskScreen extends StatefulWidget {
   const EditTaskScreen({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class EditTaskScreen extends StatefulWidget {
 }
 
 class _EditTaskScreenState extends State<EditTaskScreen> {
-  EditTaskController editTaskController = EditTaskController();
+  EditTaskController editTaskController = locator<EditTaskController>();
 
   @override
   void initState() {
@@ -54,11 +56,11 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                     controller: editTaskController.noteController,
                     validator: editTaskController.noteValidator, maxLines: 5,
                   ),
-                  TaskInputField(
-                    title: 'Date',
-                    hint: null,
-                    controller: editTaskController.dateController,
-                    validator: null, maxLines: 1,
+                  const SizedBox(height: 8.0),
+                  Text(
+                    DateFormat.yMEd().format(
+                      DateTime.now(),
+                    ),
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,

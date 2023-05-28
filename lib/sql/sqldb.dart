@@ -39,7 +39,7 @@ class SqlDatabase {
 
     await batch.commit();
 
-    print('Create DATABASE and TABLE =====');
+    //print('Create DATABASE and TABLE =====');
   }
 
   readData(String sql) async {

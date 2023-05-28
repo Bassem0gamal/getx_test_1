@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:getx_test_1/locator.dart';
 import 'package:getx_test_1/task/add_screen/add_task_controller.dart';
-import 'package:getx_test_1/icons.dart';
 import 'package:getx_test_1/task/models/task_input_field_model.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +16,7 @@ class AddTaskScreen extends StatefulWidget {
 }
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
-  AddTaskController addTaskController = AddTaskController();
+  AddTaskController addTaskController = locator<AddTaskController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,35 +51,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     validator: addTaskController.noteValidator,
                     maxLines: 5,
                   ),
-                  TaskInputField(
-                    title: 'Date',
-                    hint: DateFormat.yMEd().format(DateTime.now()),
-                    controller: addTaskController.dateController,
-                    validator: null,
-                    maxLines: 1,
+                  const SizedBox(height: 8.0),
+                  Text(
+                    DateFormat.yMEd().format(
+                      DateTime.now(),
+                    ),
                   ),
+                  const SizedBox(height: 8.0),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Color'),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: Row(
-                                children: [
-                                  blueCircleIcon(),
-                                  redCircleIcon(),
-                                  yellowCircleIcon(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       const SizedBox(width: 60),
                       Expanded(
                         child: TextButton(

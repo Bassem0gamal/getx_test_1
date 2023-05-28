@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:getx_test_1/home/home_controller.dart';
-import 'package:getx_test_1/home/widgets/home_calendar_widget.dart';
 import 'package:getx_test_1/home/widgets/home_tasks_widget.dart';
 import 'package:getx_test_1/task/edit_screen/edit_task.dart';
+import 'package:getx_test_1/task/models/task_model.dart';
 import 'package:getx_test_1/text_style.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 
+import '../locator.dart';
 import '../task/add_screen/add_task.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  HomeController homeController = HomeController();
+  HomeController homeController = locator<HomeController>();
 
   @override
   void initState() {
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> openEditTask(int id) async {
-    final editResult = await Get.toNamed(EditTaskScreen.id,arguments: id);
+    final editResult = await Get.toNamed(EditTaskScreen.id, arguments: id);
     if (editResult == true) {
       homeController.loadTasks();
     }
@@ -58,13 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        DateFormat.yMMMMd().format(DateTime.now()),
-                        style: kBodyTextStyle(fontWeight: FontWeight.bold),
+                        'Today',
+                        style: kHeadLine2TextStyle(),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Today',
-                        style: kHeadLine2TextStyle(),
+                        DateFormat.yMMMMd().format(DateTime.now()),
+                        style: kBodyTextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -74,8 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              const HomeCalendarWidget(),
               const SizedBox(height: 16.0),
               Expanded(
                 child: Obx(
@@ -85,9 +84,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         : ListView.builder(
                             itemCount: homeController.tasks.length,
                             itemBuilder: (context, int i) {
-                              return TaskItem(
-                                taskModel: homeController.tasks[i],
-                                onEditPressed: () => openEditTask(homeController.tasks[i].id),
+                              return Dismissible(
+                                key: ValueKey<TaskModel>(
+                                    homeController.tasks[i]),
+                                background: Container(
+                                  color: Colors.red,
+                                  child: const Icon(Icons.delete,
+                                      color: Colors.white),
+                                ),
+                                onDismissed: (direction) {
+                                  setState(() {
+                                    homeController.tasks.removeAt(i);
+                                  });
+                                },
+                                child: TaskItem(
+                                  taskModel: homeController.tasks[i],
+                                  onEditPressed: () =>
+                                      openEditTask(homeController.tasks[i].id),
+                                ),
                               );
                             },
                           );

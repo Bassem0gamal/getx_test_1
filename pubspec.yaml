@@ -41,6 +41,7 @@ dependencies:
   day_night_time_picker:
   calendar_date_picker2: ^0.4.1
   sqflite: ^2.2.6
+  get_it: ^7.6.0
 
 
 dev_dependencies:
